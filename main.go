@@ -3,31 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/larissamorita/go-crud-study-pokemon/model"
 	"io"
 	"log"
 	"net/http"
 )
-
-type Response struct {
-	Page       int    `json:"page"`
-	PerPage    int    `json:"per_page"`
-	Total      int    `json:"total"`
-	TotalPages int    `json:"total_pages"`
-	Data       []Data `json:"data"`
-}
-
-type Data struct {
-	City          string     `json:"city"`
-	Name          string     `json:"name"`
-	EstimatedCost int        `json:"estimated_cost"`
-	UserRating    UserRating `json:"user_rating"`
-	Id            int        `json:"id"`
-}
-
-type UserRating struct {
-	AverageRating float64 `json:"average_rating"`
-	Votes         int     `json:"votes"`
-}
 
 func main() {
 	city := "Denver"
@@ -47,7 +27,7 @@ func GetData(city, estimatedCost string) int {
 		log.Fatalln(err)
 	}
 
-	responseStruct := Response{}
+	responseStruct := model.Response{}
 
 	err = json.Unmarshal(bytesBody, &responseStruct)
 	if err != nil {
