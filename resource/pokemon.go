@@ -1,13 +1,32 @@
 package resource
 
 type ResponsePKM struct {
-	PkmEntries []DataPkm `json:"pokemon_entries"`
+	PkmEntries []DataPKM `json:"pokemon_entries"`
 }
 type DataPKM struct {
-	entryNumber int           `json:"entry_number"`
-	pkmSpecies  []DataSpecies `json:"pokemon_species"`
+	EntryNumber int        `json:"entry_number"`
+	PkmSpecies  PkmSpecies `json:"pokemon_species"`
 }
-type DataSpecies struct {
-	pkmName string `json:"name"`
-	pkmURL  string `json:"url"`
+type PkmSpecies struct {
+	PkmName string `json:"name"`
+	PkmURL  string `json:"url"`
+}
+
+//adicao de novo GET do conteudo de color
+
+type URLcolor struct {
+	Color URLcolorName `json:"color"`
+}
+
+type URLcolorName struct {
+	ColorName string `json:"name"`
+}
+
+// Formato Output
+type Output struct {
+	Data []DataPkm2 `json:"data"`
+}
+type DataPkm2 struct {
+	Name  string `json:"name"`
+	Color string `json:"color"`
 }
